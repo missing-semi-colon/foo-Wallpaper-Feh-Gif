@@ -35,7 +35,7 @@ chmod +x back4.sh wgif.sh
 killall back4.sh
 ```
 
-# autostart with i3, in i3 config:
+# Autostart with i3, using i3 config:
 
 ```
 exec_always --no-startup-id killall back4.sh 
