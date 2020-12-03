@@ -1,5 +1,5 @@
 # About foo-Wallpaper-Feh-Gif
-This is just a loop script that sets a gif as a wallpaper. Supports transparency. Requires feh or xload or [xwallpaper](https://github.com/stoeckmann/xwallpaper)(uses less cpu).
+This is just a loop script that sets a gif as a wallpaper. Supports transparency. Requires feh or xload or [xwallpaper](https://github.com/stoeckmann/xwallpaper) (uses less cpu).
 
 ! INCREASES CPU use
 
@@ -12,24 +12,22 @@ https://imgur.com/a/XxraHzY
 
 
 # To run it
-Download back4.sh and place your desired gif in the `gif` directory.
-For ubuntu/xfce set prog=$select4 in back4.sh , You can set stretched style in desktop panel.
+Download back4.sh and wgif.sh and find a gif you want to run.
+By default gifs are played using feh, if you don't have feh installed or want to use something else change this by passing in one of the numbers below with the -o switch:
+- 1: "feh --bg-fill"
+- 2: "xwallpaper --zoom"
+- 3: "xloadimage -onroot -fullscreen"
+- 4: "xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s"
+- 5: "hsetroot -full")
 
 ```
-cd ~
-chmod +x back4.sh
-./back4.sh 0.010 gif/pixel.gif &
-#./back4 speed pathToGif &
+./wgif.sh speed path_to_gif [-o number] &
 ```
 
-# select between feh,xwallpaper,xload,ubuntu-xfce
-edit back4.sh, set prog=$select2 for xwallpaper, or select4 for ubuntu-xfce
-
-# autostart with i3, in i3 config :
-
+## Example
 ```
-exec_always --no-startup-id killall back4.sh 
-exec_always --no-startup-id $HOME/back4.sh 0.03 Downloads/beautycity.gif
+chmod +x back4.sh wgif.sh
+./wgif.sh 0.01 /path/to/gif -o 2 &
 ```
 
 # To stop it
@@ -37,15 +35,12 @@ exec_always --no-startup-id $HOME/back4.sh 0.03 Downloads/beautycity.gif
 killall back4.sh
 ```
 
-# Alternatively
-
-You can add the speed as a suffix to your desired gif.
+# autostart with i3, in i3 config:
 
 ```
-ls gif/pixel.gif-0.010
-./back4.sh gif/pixel.gif-0.010 &
+exec_always --no-startup-id killall back4.sh 
+exec_always --no-startup-id $HOME/back4.sh speed /path/to/gif [-o number]
 ```
-
 
 # To clean cache
  ```
@@ -53,6 +48,3 @@ rm -rf /tmp/back4
 ```
 
 I search a lighter alternative than feh in cpu ress
-
-
-
