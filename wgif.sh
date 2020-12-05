@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# If this is run from a symlink it will change directory to the link target
+cd "$(dirname "$(realpath "$0")")"
+
 declare -A options=([1]="feh --bg-fill" [2]="xwallpaper --zoom" [3]="xloadimage -onroot -fullscreen" [4]="xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s" [5]="hsetroot -full")
 length=${#options[@]}
 
